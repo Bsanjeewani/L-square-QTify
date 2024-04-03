@@ -1,12 +1,15 @@
-import React from 'react'
-import LogoImage from "../../assets/logo.png"
+import React from "react";
 
 const Logo = () => {
   return (
-    <div>
-        <img src={LogoImage} alt="Logo" width={67} height={34} />
-    </div>
-  )
-}
+    <img
+      className="logo"
+      src={require("../../assets/logo.png")}
+      alt="logo"
+      width={67}
+      style={{ marginLeft: "1rem" }}
+    />
+  );
+};
 
-export default Logo
+export default Logo;

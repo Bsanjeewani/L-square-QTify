@@ -1,18 +1,12 @@
-import React from "react"
-import './App.css';
-import { Route,Routes } from "react-router-dom"
-import LandingPage from "./mainpages/LandingPage";
-import AlbumsDetails from "./mainpages/AlbumsDetails/AlbumsDetails";
+import "./App.css";
+import HeroSection from "./components/HeroPage/HeroSection";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/album/:slug" element={<AlbumsDetails />} />
-        <Route path="*" element={<LandingPage />} />
-      </Routes>
-    
+    <div className="App">
+      <NavBar />
+      <HeroSection />
     </div>
   );
 }

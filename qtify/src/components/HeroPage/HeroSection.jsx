@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./HeroSection.module.css";
-import Headphone from "../../assets/headphone.svg";
+import Headphone from "../../assets/headphone.png";
 
 const HeroSection = () => {
   return (

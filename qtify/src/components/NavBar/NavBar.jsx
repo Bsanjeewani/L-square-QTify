@@ -6,10 +6,16 @@ import styles from "./NavBar.module.css";
 
 const Navbar = () => {
   return (
-    <div className={styles.navbar}>
-      <Logo id={styles.logo} />
-      <Search placeholder="Search a song of your choice" />
-      <Button>Give Feedback</Button>
+    <div className={styles.wrapper}>
+      <div className={styles.navbar}>
+        <div className={styles.logoWrapper}>
+          {" "}
+          <Logo className={styles.logo} />
+        </div>
+
+        <Search placeholder="Search a song of your choice" />
+        <Button>Give Feedback</Button>
+      </div>
     </div>
   );
 };

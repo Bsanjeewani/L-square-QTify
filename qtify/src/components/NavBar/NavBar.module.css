@@ -1,6 +1,12 @@
-#logo {
-    margin-left: 25px;
+.logo {
+    padding-right: 45px;
     cursor: pointer;
+}
+
+.wrapper {
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    padding-top: 5px;
 }
 
 .logoWrapper {

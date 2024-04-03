@@ -9,7 +9,7 @@ const HeroSection = ({ content, content2 }) => {
         <div className={styles.heroImageWrapper}>
           <div className={styles.banner}>
             <h1>{content}</h1>
-            <h1>{content2}</h1>
+            <h1>Over thhousands podcast episodes</h1>
           </div>
           <div>
             <img src={Headphone} alt="Headphone" height="212px" />

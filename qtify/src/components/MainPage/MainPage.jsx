@@ -10,10 +10,7 @@ const MainPage = () => {
         <Navbar />
       </div>
       <div>
-        <HeroSection
-          content={"100 Thousand Songs, ad fee"}
-          content2={"Over thhousands podcast episodes"}
-        />
+        <HeroSection content={"100 Thousand Songs, ad fee"} />
       </div>
     </div>
   );

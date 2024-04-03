@@ -7,7 +7,7 @@ import styles from "./NavBar.module.css";
 const Navbar = () => {
   return (
     <div className={styles.navbar}>
-      <Logo />
+      <Logo id={styles.logo} />
       <Search placeholder="Search a song of your choice" />
       <Button>Give Feedback</Button>
     </div>

@@ -1,15 +1,14 @@
 import React from "react";
+import styles from "./Logo.module.css";
+import LogoImg from "../../assets/logo.png";
 
-const Logo = () => {
-  return (
-    <img
-      className="logo"
-      src={require("../../assets/logo.png")}
-      alt="logo"
-      width={67}
-      style={{ marginLeft: "1rem" }}
-    />
-  );
+const Logo=()=>{
+
+return(
+    <div className={styles.logoDiv}>
+        <img src={LogoImg} width={67} alt="logo"/>
+    </div>
+)
 };
 
 export default Logo;

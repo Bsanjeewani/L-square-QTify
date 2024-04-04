@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600&display=swap');
+
 :root {
+  /* Global variables to be defined here */
   --color-primary: #34c94b;
   --color-black: #121212;
   --color-white: #ffffff;
 }
-
 
 *,
 *::before,
@@ -11,29 +13,31 @@
   box-sizing: border-box;
 }
 
-*{
+* {
   margin: 0;
 }
 
 html,
-body{
+body {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-  font-family: "Poppins", sans-serif;
+body {
   line-height: 1.5;
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: var(--color-black);
-  overflow-x: hidden;
+  background: #121212;
   color: var(--color-white);
+  overflow-x: hidden;
 }
 
 img,
 picture,
 video,
 canvas,
-svg{
+svg {
   display: block;
   max-width: 100%;
 }
@@ -41,7 +45,7 @@ svg{
 input,
 button,
 textarea,
-select{
+select {
   font: inherit;
 }
 
@@ -51,23 +55,15 @@ h2,
 h3,
 h4,
 h5,
-h6{
+h6 {
   overflow-wrap: break-word;
 }
 
 #root,
-#__next{
+#__next {
   isolation: isolate;
 }
 
-a,
-a:hover,
-a:focus,
-a:active{
-  text-decoration: none;
-  color: inherit;
-}
-
-.swiper-slide{
+.swiper-slide {
   width: auto !important;
 }

@@ -1,53 +1,62 @@
-import React, { useState } from "react";
-import styles from "./Section.module.css";
+import React, { useEffect, useState } from "react";
+import styles from "./Section.module.css"
+import { CircularProgress, Tab, Tabs } from "@mui/material";
 import Card from "../Card/Card";
 import Carousel from "../Carousel/Carousel";
-import SkeletonLoader from "../SkeletonLoder/SkeletonLoader";
+import Filters from "../Filters/Filters";
 
-const Section = ({ title, data, type,header, loadingState }) => {
-  const [carouselToggle, setCarouselToggle] = useState(true);
+export default function Section({ title, type, data, filterSource }) {
+    const [carouselToggle, setCarouselToggle] = useState(true);
+    const [filters, setFilters] = useState([{key: "all", label:"All"}])
+    const [selecetedFilterIndex, setSelecetedFilterIndex] = useState(0);
 
-  const handleToggle = () => {
-    setCarouselToggle(!carouselToggle);
-  };
-  return (
-    <div className={styles.sectionWrapper}>
-      {header === "all" ? (
-				<></>
-			) : (
-      <div className={styles.header}>
-        <h3>{title}</h3>
-        <h4 className={styles.toggleText} onClick={handleToggle}>
-          {carouselToggle ? "Show all" : "Collapse"}
-        </h4>
-      </div>
-      )}
-      
-      {data.length ? (
-        <div className={styles.cardWrapper}>
-          {!carouselToggle ? (
-            <div className={styles.wrapper}>
-              {data?.map((item)=>(
-                  <Card  data={item} type={type} key={item.id} />
-              ))}
+    const handleToggle = () => {
+        setCarouselToggle((prevState) => !prevState);
+    }
+
+    useEffect(() => {
+        if(filterSource){
+            filterSource().then((response) => {
+                const { data } = response; 
+                setFilters([...filters, ...data]);
+            })
+        }
+    }, []);
+
+    const showFilters = filters.length > 1;
+
+    const cardsToRender = data.filter((card) => showFilters && selecetedFilterIndex !== 0 ? card.genre.key === filters[selecetedFilterIndex].key : card);
+
+    return(
+        <div>
+            <div className={styles.header}>
+                <h3>{title}</h3>
+                {!showFilters && (<h4 className={styles.toggleText} onClick={handleToggle}>{!carouselToggle ? "Collapse All" : "Show All"}</h4>)}
             </div>
-          ):(
-            <Carousel 
-            data={data}
-            renderCardComponent={(item) => <Card data={item} type={type} />}
-            />
-          )
-          }
+            {showFilters && (
+                <div className={styles.filterWrapper}>
+                <Filters filters={filters} selectedFilterIndex={selecetedFilterIndex} setSelectedFilterIndex={setSelecetedFilterIndex} /> 
+                </div>
+            )}
+            {
+                cardsToRender.length === 0 ? (
+                    <div className={styles.circularProgress}>
+                    <CircularProgress/>
+                    </div>
+                ) : (
+                    <div className={styles.cardWrapper}>
+                        {!carouselToggle ? (
+                            <div className={styles.wrapper}>
+                                {cardsToRender.map((ele) => (
+                                    <Card data={ele} type={type}/>
+                                ))}
+                            </div>
+                        ) : (
+                            <Carousel data={cardsToRender} renderComponent={(data) => <Card data={data} type={type}/>}/>
+                        )}
+                    </div>
+                )
+            }
         </div>
-      ): loadingState ? (
-       <SkeletonLoader name={"card"} count={5} />
-				
-			) : (
-				<p>No Data found</p>
-			)}
-    </div>
-    
-  );
-};
-
-export default Section;
+    )
+}

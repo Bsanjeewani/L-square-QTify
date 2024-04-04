@@ -4,7 +4,6 @@ import NavBar from "../../components/NavBar/NavBar";
 import { ReactComponent as LeftArrowIcon } from "../../assets/LeftArrow.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import Footer from "../../components/Footer/Footer";
 import { ReactComponent as ShuffleIcon } from "../../assets/shuffleIcon.svg";
 import { ReactComponent as LibraryIcon } from "../../assets/libraryIcon.svg";
 import { convertMsToTime } from "../../config/helper-methods";
@@ -18,9 +17,9 @@ const AlbumsDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
-  const onPageChange=(pageNo)=>{
-    setPage(pageNo)
-  }
+  const onPageChange = (pageNo) => {
+    setPage(pageNo);
+  };
 
   const totalTimeInMs = useMemo(() => {
     return albumsDetails?.songs?.reduce((sum, item) => {
@@ -94,10 +93,10 @@ const AlbumsDetails = () => {
           {/* Paginations */}
           <div className={styles.pagination_container}>
             <CustomPagination
-            page={page}
-            pageLimit={10}
-            totalCount={albumsDetails?.songs?.length}
-            onPageChange={onPageChange}
+              page={page}
+              pageLimit={10}
+              totalCount={albumsDetails?.songs?.length}
+              onPageChange={onPageChange}
             />
           </div>
           {/* Table */}
@@ -135,8 +134,6 @@ const AlbumsDetails = () => {
       ) : (
         <>"No DataFound"</>
       )}
-
-      <Footer />
     </div>
   );
 };

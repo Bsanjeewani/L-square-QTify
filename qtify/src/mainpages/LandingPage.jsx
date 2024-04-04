@@ -8,9 +8,6 @@ import Section from "../components/Section/Section.jsx";
 import FilterTabs from "../components/FilterTabs/FilterTabs.jsx";
 import { accordionData } from "../config/helper-config.js";
 import CustomAccordion from "../components/Accordion/CustomAccordion.jsx";
-import Footer from "../components/Footer/Footer.jsx";
-
-
 
 const LandingPage = () => {
   const [topAlbumData, setTopAlbumData] = useState([]);
@@ -99,7 +96,8 @@ const LandingPage = () => {
         <div>
           <h3 className={styles.tabsTitle}>Songs</h3>
           <FilterTabs
-           data={allSongsData} loadingState={loadingState.allSongs}
+            data={allSongsData}
+            loadingState={loadingState.allSongs}
           />
         </div>
       </div>
@@ -115,7 +113,6 @@ const LandingPage = () => {
           <></>
         )}
       </div>
-      <Footer />
     </>
   );
 };

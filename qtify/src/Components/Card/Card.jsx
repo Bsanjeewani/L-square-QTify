@@ -1,87 +1,60 @@
-import React from 'react'
-import './Card.css'
-import Logo from "../../Images/Logo"
-import Tooltip from '@mui/material/Tooltip';
-import Box from '@mui/material/Box';
-import { Link } from "react-router-dom";
+import React from "react";
+import { Tooltip,Chip } from "@mui/material";
+import styles from "./Card.module.css"
+import { useNavigate } from "react-router-dom";
 
-const Card = (props) => {
-
-  const positionRef = React.useRef({
-    x: 0,
-    y: 0,
-  });
-  const popperRef = React.useRef(null);
-  const areaRef = React.useRef(null);
-
-  const handleMouseMove = (event) => {
-    positionRef.current = { x: event.clientX, y: event.clientY };
-
-    if (popperRef.current != null) {
-      popperRef.current.update();
-    }
-  };
-
-  return (
-    <div>
-      <Tooltip
-        title={props.totalSongs}
-        placement="top"
-        arrow
-        PopperProps={{
-          popperRef,
-          anchorEl: {
-            getBoundingClientRect: () => {
-              return new DOMRect(
-                positionRef.current.x,
-                areaRef.current.getBoundingClientRect().y,
-                0,
-                0,
-              );
-            },
-          },
-        }}
-      >
-        {props.slug ? ( // Check if props.slug is defined
-          <Link to={`/music/${props.slug}`}>
-            <Box
-              ref={areaRef}
-              onMouseMove={handleMouseMove}
+const Card = ({ data, type }) => {
+  const navigate =useNavigate()
+  const getCard = (type) => {
+    switch (type) {
+      case "album":
+        return (
+          <Tooltip
+            title={`${data.songs.length} songs`}
+            placement="top"
+            arrow
+          >
+            <div className={styles.wrapper}
+            onClick={() =>navigate(`/album/${data?.slug}`)}
             >
-              <div className='card'>
-                <img src={props.image} alt={<Logo />} />
-                <div className='followers'>
-                  {props.follows ? (
-                    <p>{props.follows} Follows</p>
-                  ) : (
-                    <p>{props.likes} Likes</p>
-                  )}
+                <div className={styles.card}>
+                    <img src={data.image} alt="album" />
+                    <div className={styles.banner}>
+                        <Chip 
+                        label={`${data.follows} Follows`}
+                        className={styles.chip}
+                        size="small"
+                        />
+                    </div>
+                </div>
+                <div className={styles.titleWrapper}>
+                    <p>{data.title}</p>
+                </div>
+            </div>
+          </Tooltip>
+        );
+        case "songs":
+          return (
+            <div className={styles.wrapper}>
+              <div className={styles.card}>
+                <img src={data.image} alt="songs" loading="lazy" />
+                <div className={styles.banner}>
+                  <div id={styles.pill}>
+                    <p>{data.likes}</p>
+                  </div>
                 </div>
               </div>
-              <p className="category">{props.title}</p>
-            </Box>
-          </Link>
-        ) : (
-          <Box
-            ref={areaRef}
-            onMouseMove={handleMouseMove}
-          >
-            <div className='card'>
-              <img src={props.image} alt={<Logo />} />
-              <div className='followers'>
-                {props.follows ? (
-                  <p>{props.follows} Follows</p>
-                ) : (
-                  <p>{props.likes} Likes</p>
-                )}
+              <div className={styles.titleWrapper}>
+                <p>{data.title}</p>
               </div>
             </div>
-            <p className="category">{props.title}</p>
-          </Box>
-        )}
-      </Tooltip>
-    </div>
-  )
-}
+          )
+        default:
+            return <></>;
+    }
+};
+
+return getCard(type);
+};
 
 export default Card;

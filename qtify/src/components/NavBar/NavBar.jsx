@@ -1,23 +1,49 @@
-import React from "react";
-import "./Navbar.css";
-import Logo from "../../Images/Logo";
-import Search from "../Searchbar/Searchbar";
-import FeedbackForm from "../FeedbackForm/FeedbackForm";
-
-const Navbar = ({ onFeedbackButtonClick }) => {
+import React, { useState } from "react";
+import styles from "./NavBar.module.css";
+import Logo from "../Logo/Logo";
+import SearchBar from "../SearchBar/SearchBar.jsx";
+import FeedBackModal from "../FeedBackModal/FeedBackModal";
+import { useNavigate } from "react-router-dom";
+const NavBar = ({ data, logo = false, search = false, feedback = false }) => {
+  const [isFeedBackModalOpen, setIsFeedBackModalOpen] = useState(false);
+  const navigate = useNavigate();
+  const toggleFeedBackModal = (value = false) => {
+    setIsFeedBackModalOpen(value);
+  };
+  //   const _onSuccess = () => {
+  //     show toast
+  //     showToast("Feedback Submitted", "success");
+  //   };
   return (
-    <div className="navbar">
-      <div className="logo">
-        <Logo />
-      </div>
-      <div>
-        <Search />
-      </div>
-      <div className="feedback">
-        <FeedbackForm onFeedbackButtonClick={onFeedbackButtonClick} />
-      </div>
+    <div className={styles.wrapper}>
+      <nav className={styles.navbar}>
+        <div className={styles.logoWrapper} onClick={() => navigate(`/`)}>
+          {logo ? <Logo id={styles.logo} /> : null}
+        </div>
+        {search ? (
+          <div className={styles.searchWrapper}>
+            <SearchBar
+              placeholder="Search a album of your choice"
+              data={data}
+            />
+          </div>
+        ) : null}
+        {feedback ? (
+          <div
+            className={styles.nav_link}
+            onClick={() => toggleFeedBackModal(true)}
+          >
+            Feedback
+          </div>
+        ) : null}
+      </nav>
+      <FeedBackModal
+        isOpen={isFeedBackModalOpen}
+        //    onSuccess={_onSuccess}
+        onDismiss={toggleFeedBackModal}
+      />
     </div>
   );
 };
 
-export default Navbar;
+export default NavBar;

@@ -1,69 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600&display=swap');
-
 :root {
-  /* Global variables to be defined here */
-  --color-primary: #34c94b;
-  --color-black: #121212;
-  --color-white: #ffffff;
+  --css-primary: #34c94b;
+  --css-black : #121212;
+  --css-white : #fff;
 }
 
-*,
-*::before,
-*::after {
+/* Reset some default browser styles */
+html, body, h1, h2, h3, p, ul, ol, li, dl, dt, dd, blockquote, figure, fieldset, legend {
+  margin: 0;
+  padding: 0;
+  background: var(--css-black);
+  color: var(--css-white);
+  font-family: Poppins;
+}
+
+/* Remove default list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Set the base font size and line height */
+html {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Ensure images are not scaled beyond their natural size */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove underline from links and make them blue by default */
+a {
+  text-decoration: none;
+  color: #0073e6;
+}
+
+/* Apply a basic box-sizing to all elements for consistent sizing */
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
-* {
-  margin: 0;
-}
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  line-height: 1.5;
-  font-family: "Poppins", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  background: #121212;
-  color: var(--color-white);
-  overflow-x: hidden;
-}
-
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
-
-#root,
-#__next {
-  isolation: isolate;
-}
-
-.swiper-slide {
-  width: auto !important;
-}
+/* .css-bnc8dt {
+  display: none;
+} */

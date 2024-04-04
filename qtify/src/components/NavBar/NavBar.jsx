@@ -1,23 +1,19 @@
-import React from "react";
-import Button from "../Button/Button";
-import Logo from "../Logo/Logo";
-import Search from "../Search/Search";
-import styles from "./NavBar.module.css";
+import React from 'react'
+import "./Navbar.css"
+import Searchbar from '../Searchbar/Searchbar'
+import Feedback from '../FeedbackButton/FeedbackButton'
+import Logo from '../../Images/Logo'
 
-const Navbar = () => {
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.navbar}>
-        <div className={styles.logoWrapper}>
-          {" "}
-          <Logo className={styles.logo} />
+const Navbar = ({ onFeedbackButtonClick }) => {
+    return (
+        <div className='navbar'>
+            <div className='logo'><Logo/></div>
+            <div>
+                <Searchbar />
+            </div>
+            <div className='feedback'><Feedback onFeedbackButtonClick={onFeedbackButtonClick}/></div>
         </div>
+    )
+}
 
-        <Search placeholder="Search a song of your choice" />
-        <Button>Give Feedback</Button>
-      </div>
-    </div>
-  );
-};
-
-export default Navbar;
+export default Navbar

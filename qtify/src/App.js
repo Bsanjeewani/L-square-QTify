@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import './App.css';
-import FeedbackForm from './Components/FeedbackForm/FeedbackForm';
-import Home from './Pages/Home/Home';
-import Navbar from './Components/Navbar/Navbar';
+import React, { useState } from "react";
+import "./App.css";
+import FeedbackForm from "./Components/FeedbackForm/FeedbackForm";
+import Home from "./Pages/Home/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CurrentAlbum from './Pages/CurrentAlbum/CurrentAlbum';
+import CurrentAlbum from "./Pages/CurrentAlbum/CurrentAlbum";
+import Navbar from "./Components/Navbar/Navbar.jsx";
 
 function App() {
   const [displayForm, setDisplayForm] = useState(false);
@@ -24,14 +24,13 @@ function App() {
     <div>
       <Navbar onFeedbackButtonClick={toggleFeedbackForm} />
       <FeedbackForm displayForm={displayForm} onSubmit={handleFormSubmit} />
-      
+
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/music/:albumId" element={<CurrentAlbum />} />
         </Routes>
       </BrowserRouter>
-      
     </div>
   );
 }
